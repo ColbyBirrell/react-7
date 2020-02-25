@@ -1,5 +1,8 @@
-import React from 'react'
-import '../style.css'
+import React from "react";
+import "../style.css";
+import Toggle from "./toggle";
+import Square from "../HOCS/Square";
+import ToggleRenderProps from "./toggleRenderProps";
 
 const RenderProps = props => {
   return (
@@ -14,7 +17,24 @@ const RenderProps = props => {
           Docs
         </a>
       </h1>
+      <Toggle>
+        <Square isAdmin darkMode />
+      </Toggle>
+
+      <ToggleRenderProps
+        render={(isVisible, setIsVisible) => {
+          return (
+            <div>
+              {isVisible && <Square isAdmin />}
+
+              <button onClick={() => setIsVisible(!isVisible)}>
+                Toggle me, baby, One more time
+              </button>
+            </div>
+          );
+        }}
+      />
     </section>
-  )
-}
-export default RenderProps
+  );
+};
+export default RenderProps;
